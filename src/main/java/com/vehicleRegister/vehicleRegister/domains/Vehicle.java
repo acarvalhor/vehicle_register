@@ -22,6 +22,6 @@ public class Vehicle implements Serializable {
     private String description;
     private String plate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST })
     private VehicleType vehicleType;
 }
