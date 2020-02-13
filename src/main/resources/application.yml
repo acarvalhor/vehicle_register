@@ -1,7 +1,14 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
+  profiles:
+    active: maria
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
   datasource:
     url: jdbc:mysql://database-1.cemqp9wkhz9q.us-east-1.rds.amazonaws.com:3306/vehicle_register?useTimezone=true&serverTimezone=UTC
     username: root
@@ -13,3 +20,16 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        type: trace
+
+---
+
+spring:
+  profiles: maria
+  datasource:
+    url: jdbc:mysql://localhost:3306/vehicle_register?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: admin

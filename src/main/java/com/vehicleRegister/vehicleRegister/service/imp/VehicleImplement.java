@@ -6,6 +6,7 @@ import com.vehicleRegister.vehicleRegister.repository.VehicleRepository;
 import com.vehicleRegister.vehicleRegister.repository.VehicleTypeRepository;
 import com.vehicleRegister.vehicleRegister.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class VehicleImplement implements VehicleService {
     }
 
     @Override
+    @Cacheable(cacheNames = "Vehicle", key = "#root.method.name")
     public List<Vehicle> findAllVehicle() {
         return vehicleRepository.findAll();
     }
